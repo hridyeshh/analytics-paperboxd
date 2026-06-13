@@ -1,28 +1,33 @@
 "use client";
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 type Props = {
-  data: { name: string; events: number; unique_users: number }[];
+  data: { date: string; count: number }[];
+  color?: string;
+  height?: number;
+  label?: string;
 };
 
-export default function FeatureBarChart({ data }: Props) {
-  const top = data.slice(0, 12);
+export default function SimpleBar({ data, color = "#4a9d5b", height = 160, label = "count" }: Props) {
   return (
-    <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={top} layout="vertical" margin={{ top: 0, right: 16, left: 8, bottom: 0 }}>
-        <CartesianGrid stroke="#2a2d2b" strokeDasharray="3 3" horizontal={false} />
-        <XAxis type="number" tick={{ fontSize: 10, fill: "#6b6b5b" }} tickLine={false} axisLine={false} />
-        <YAxis type="category" dataKey="name" width={160}
-          tick={{ fontSize: 10, fill: "#6b6b5b", fontFamily: "monospace" }} tickLine={false} axisLine={false}
-          tickFormatter={s => s.replace(/\./g, " › ")} />
+    <ResponsiveContainer width="100%" height={height}>
+      <BarChart data={data} margin={{ top: 4, right: 2, left: -28, bottom: 0 }} barSize={18}>
+        <CartesianGrid stroke="#1e2120" vertical={false} />
+        <XAxis dataKey="date" tick={{ fontSize: 9, fill: "#3a3d38", fontFamily: "monospace" }}
+          tickLine={false} axisLine={false} tickFormatter={d => d.slice(5)} />
+        <YAxis tick={{ fontSize: 9, fill: "#3a3d38", fontFamily: "monospace" }}
+          tickLine={false} axisLine={false} />
         <Tooltip
-          contentStyle={{ background: "#1a1c1b", border: "1px solid #2a2d2b", borderRadius: 6, fontSize: 12, fontFamily: "monospace" }}
-          labelStyle={{ color: "#e8e2d5" }}
+          contentStyle={{ background: "#171a18", border: "1px solid #1e2120", borderRadius: 6, fontSize: 11, fontFamily: "monospace" }}
+          labelStyle={{ color: "#d4cfc6" }}
+          itemStyle={{ color: color }}
+          formatter={(v: number) => [v.toLocaleString(), label]}
         />
-        <Bar dataKey="events"       fill="#4a9d5b" opacity={0.9} radius={[0,3,3,0]} name="events" />
-        <Bar dataKey="unique_users" fill="#c4862d" opacity={0.7} radius={[0,3,3,0]} name="unique users" />
+        <Bar dataKey="count" radius={[2, 2, 0, 0]}>
+          {data.map((_, i) => (
+            <Cell key={i} fill={color} fillOpacity={i === data.length - 1 ? 1 : 0.6} />
+          ))}
+        </Bar>
       </BarChart>
     </ResponsiveContainer>
   );

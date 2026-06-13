@@ -14,3 +14,10 @@ export async function POST(req: NextRequest) {
   });
   return res;
 }
+
+export async function DELETE() {
+  const { NextResponse } = await import("next/server");
+  const res = NextResponse.json({ ok: true });
+  res.cookies.delete("pb_analytics_auth");
+  return res;
+}

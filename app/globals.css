@@ -1,34 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Geist+Mono:wght@300;400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-}
+* { box-sizing: border-box; }
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
 
 body {
-  background-color: #0f1110;
-  color: #e8e2d5;
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: #0b0d0c;
+  color: #d4cfc6;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", ui-sans-serif, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* paper grid texture */
-body::before {
+/* subtle grid texture */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.font-display { font-family: "Playfair Display", Georgia, serif; }
-.font-mono    { font-family: "Geist Mono", ui-monospace, monospace; }
-
-/* recharts axis text */
-.recharts-cartesian-axis-tick text { fill: #6b6b5b; font-size: 11px; font-family: "Geist Mono", monospace; }
+.recharts-cartesian-axis-tick text {
+  fill: #4a4e48 !important;
+  font-size: 10px !important;
+  font-family: "Geist Mono", monospace !important;
+}
+.recharts-legend-item-text { color: #6b6b5b !important; font-size: 11px !important; }
 .recharts-tooltip-wrapper { outline: none; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2d2b; border-radius: 2px; }
