@@ -29,6 +29,13 @@ const nav = [
       <path d="M2 10 L5 7 L8 9 L12 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )},
+  { href: "/discovery", label: "Discovery",        icon: (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
+      <path d="M9.5 9.5 L12.5 12.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      <path d="M4.5 6 L5.8 7.3 L8 4.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )},
   { href: "/infra",     label: "Infrastructure",   icon: (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
       <rect x="1" y="2" width="12" height="3" rx="1" stroke="currentColor" strokeWidth="1.2"/>
